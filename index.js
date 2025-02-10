@@ -60,6 +60,10 @@ app.use("/api/v1/subregion", subRegionRouter);
 app.use("/api/v1/location", locationRouter);
 app.use("/api/v1/payment", paymentRouter);
 
+app.get("/", (req, res) => {
+  res.send("Hello, world! Your app is running!");
+});
+
 // const updateUsers = async () => {
 //   try {
 //     // Update all users to add the new properties field
