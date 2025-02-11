@@ -43,12 +43,13 @@ app.use(morgan("dev"));
 app.use(cookieParser());
 
 const corsOptions = {
-  origin: [
-    "http://localhost:3000",
-    "http://localhost:3001",
-    "http://localhost:3002",
-    "http://localhost:8081",
-  ],
+  // origin: [
+  //   "http://localhost:3000",
+  //   "http://localhost:3001",
+  //   "http://localhost:3002",
+  //   "http://localhost:8081",
+  // ],
+  origin: "*",
   credentials: true, //access-control-allow-credentials:true
   optionSuccessStatus: 200,
 };
