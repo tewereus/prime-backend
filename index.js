@@ -25,15 +25,19 @@ const PORT = process.env.PORT || 9001;
 const mongoose = require("mongoose");
 
 const connectDB = async () => {
-  const conn = await mongoose.connect(process.env.MONGO_URI);
   try {
-    console.log(`mongoDB connected: ${conn.connection.host}`);
+    // Use Mongoose to connect to MongoDB using the URI from environment variable
+    await mongoose.connect(process.env.MONGO_URI, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    });
+
+    console.log("MongoDB connected successfully!");
   } catch (err) {
-    console.error(`mongodb connection error: ${err.message}`);
-    process.exit(1);
+    console.error("MongoDB connection error: ", err);
+    process.exit(1); // Exit the process with failure
   }
 };
-
 connectDB();
 app.use(morgan("dev"));
 app.use(cookieParser());
