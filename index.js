@@ -2,7 +2,7 @@ const express = require("express");
 const app = express();
 const dotenv = require("dotenv");
 dotenv.config();
-const connectDB = require("./config/db");
+// const connectDB = require("./config/db");
 const cookieParser = require("cookie-parser");
 const cors = require("cors");
 const morgan = require("morgan");
@@ -21,6 +21,18 @@ const paymentRouter = require("./routes/paymentRoute");
 const PORT = process.env.PORT || 9001;
 // const { Property } = require("./models/propertyModel");
 // const User = require("./models/userModel");
+
+const mongoose = require("mongoose");
+
+const connectDB = async () => {
+  const conn = await mongoose.connect(process.env.MONGO_URI);
+  try {
+    console.log(`mongoDB connected: ${conn.connection.host}`);
+  } catch (err) {
+    console.error(`mongodb connection error: ${err.message}`);
+    process.exit(1);
+  }
+};
 
 connectDB();
 app.use(morgan("dev"));
